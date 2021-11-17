@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      hibernate:
+      format_sql: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/algafood?createDatabaseIfNotExist=true&useSSL=false
+    username: postgres
+    password: 123456
+    driverClassName: org.postgresql.Driver
+
+
+server:
+  port: 8080

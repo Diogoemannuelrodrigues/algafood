@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/usuarios")
-public class UsuarioResource {
+public class UsuarioController {
 
     @Autowired
     private UsuarioRepository repo;
@@ -26,7 +26,7 @@ public class UsuarioResource {
 
     @GetMapping("/{id}")
     public Usuario getUsuario(@PathVariable("id") String usuarioId){
-        return repo.getUsuario(usuarioId);
+        return repo.getEmployeeById(usuarioId);
     }
 
     @DeleteMapping("/{id}")

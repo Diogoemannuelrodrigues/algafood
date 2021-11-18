@@ -16,28 +16,29 @@ public class UsuarioRepository {
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
-    public Usuario save(Usuario usuario){
-        dynamoDBMapper.save(usuario);
-        return usuario;
+
+    public Usuario save(Usuario employee) {
+        dynamoDBMapper.save(employee);
+        return employee;
     }
 
-    public Usuario getUsuario(String usuarioId){
-        return dynamoDBMapper.load(Usuario.class, usuarioId);
-    }
-    public String delete(String usuarioId){
-        Usuario usuario = getUsuario(usuarioId);
-        dynamoDBMapper.delete(usuario);
-        return "Usuario: "+ usuario + " Deletado.";
+    public Usuario getEmployeeById(String employeeId) {
+        return dynamoDBMapper.load(Usuario.class, employeeId);
     }
 
+    public String delete(String employeeId) {
+        Usuario emp = dynamoDBMapper.load(Usuario.class, employeeId);
+        dynamoDBMapper.delete(emp);
+        return "Employee Deleted!";
+    }
 
-    public String update(String usuarioId, Usuario usuario){
-        dynamoDBMapper.save(usuario,
+    public String update(String usuarioId, Usuario employee) {
+        dynamoDBMapper.save(employee,
                 new DynamoDBSaveExpression()
-                        .withExpectedEntry("usuarioId",
-                        new ExpectedAttributeValue(
-                                new AttributeValue().withS(usuarioId)
-                        )));
+                        .withExpectedEntry("employeeId",
+                                new ExpectedAttributeValue(
+                                        new AttributeValue().withS(usuarioId)
+                                )));
         return usuarioId;
     }
 }
